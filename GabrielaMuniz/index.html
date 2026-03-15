@@ -229,33 +229,7 @@
         <p onclick="document.getElementById('modal').style.display='none'" style="margin-top: 20px; color: #444; font-size: 0.75rem; cursor: pointer; text-decoration: underline;">Ainda não abri</p>
     </div>
 </div>
-
-<script>
-    function showTutorial() {
-        document.getElementById('quiz-section').style.display = 'none';
-        document.getElementById('tutorial-section').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-
-    function openModal() {
-        document.getElementById('modal').style.display = 'flex';
-        const link = document.getElementById('finalLink');
-        const params = window.location.search;
-        if (params && !link.href.includes('?')) {
-            link.href += params;
-        }
-    }
-
-    function redirectToBot() {
-        const currentParams = new URLSearchParams(window.location.search);
-        currentParams.forEach((value, key) => {
-            destUrl.searchParams.append(key, value);
-        });
-        window.location.href = destUrl.toString();
-    }
-</script>
-
-<script src="java/app.js"></script>
+<script src="../java/app.js"></script>
 </body>
 </html>
 

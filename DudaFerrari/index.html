@@ -225,43 +225,10 @@
         <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">
             Para entrar no meu <b style="color: #fff;">Grupo Secreto</b> e ver as fotos, você precisa garantir que abriu no navegador (Chrome/Safari).
         </p>
-        <a href="#" id="finalLink" onclick="openTelegram(); return false;" class="final-link"></a>SIM, ENTRAR AGORA!</a>
+        <a href="#" id="finalLink" onclick="openTelegram(); return false;" class="final-link">SIM, ENTRAR AGORA!</a>
         <p onclick="document.getElementById('modal').style.display='none'" style="margin-top: 20px; color: #444; font-size: 0.75rem; cursor: pointer; text-decoration: underline;">Ainda não abri</p>
     </div>
 </div>
-
-<script>
-    function showTutorial() {
-        document.getElementById('quiz-section').style.display = 'none';
-        document.getElementById('tutorial-section').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-
-    function openModal() {
-        document.getElementById('modal').style.display = 'flex';
-        const link = document.getElementById('finalLink');
-        // always rebuild the href using the bot URL plus any query params
-        const params = window.location.search;
-        link.href = base + params;
-    }
-</script>
-
-
-  <script>
-    // build a final URL that includes any query parameters from the current page
-    const currentParams = new URLSearchParams(window.location.search);
-    currentParams.forEach((value, key) => {
-      destUrl.searchParams.append(key, value);
-    });
-    const finalUrl = destUrl.toString();
-
-    // update the link element immediately so it works even before the modal opens
-    const autoLink = document.getElementById('finalLink');
-    if (autoLink) {
-      autoLink.href = finalUrl;
-    }
-  </script>
-
-<script src="java/app.js"></script>
+<script src="../java/app.js"></script>
 </body>
 </html>
