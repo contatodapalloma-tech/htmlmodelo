@@ -1,0 +1,14 @@
+Crie um único arquivo HTML/CSS/JS (ou um pequeno projeto com arquivos separados) que reproduza exatamente a interface do anexo — um cartão central branco com bordas arredondadas, avatar circular no canto superior esquerdo, título grande "Tudinho da Judi (70 MIDIAS!!)" com subtítulo contendo emojis, seção "Dados de acesso" com dois campos (nome e e‑mail) mostrando mensagens de erro vermelhas quando vazios, preço à direita ("16,00") e um botão grande em degradê rosa "Acessar Agora".
+
+Requisitos técnicos e de estilo (instruções claras):
+- Mobile‑first: layout otimizado para celular (max-width ~420px), cartão central com margem e espaçamento confortável.
+- Cores: fundo claro (#f3f7fb), cartão branco, degradê do botão entre #ff2d6f e #ff5aa8, mensagens de erro em vermelho (#e11d48).
+- Tipografia: use fonte moderna (por exemplo, Inter). Peso do título forte (700-800).
+- Inputs: cantos arredondados, placeholders conforme o anexo, borda sutil, mensagem de erro abaixo do input em vermelho.
+- Acessibilidade: labels associados, foco visível, formulário com validação simples em JS.
+- Responsividade: garantir que o cartão ocupe a largura disponível em telas pequenas e fique centralizado em telas maiores (max-width 420px).
+- Forneça HTML completo pronto para salvar e abrir localmente (sem dependências de build). Se separar em arquivos, inclua também o CSS e JS.
+
+Produza também instruções curtas: como testar localmente (abrir index.html) e onde trocar o avatar por uma imagem real.
+
+Gere apenas o projeto/arquivos solicitados (HTML/CSS/JS) e evite frameworks. Entregue em Português.
