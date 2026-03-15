@@ -189,11 +189,11 @@
         
         <div id="quiz-section">
             <span class="hot-tag">CONTEÚDO PRIVADO 🔥</span>
-            <h1></h1>
-            <p style="color: #888; margin-bottom: 30px; font-size: 0.9rem;">Me diz, você está pronto para o que vai ver lá dentro?</p>
+            <h1>Amor, eu sabia que você viria me ver...</h1>
+            <p style="color: #888; margin-bottom: 30px; font-size: 0.9rem;">Mas me diz, você está pronto para o que vai ver lá dentro?</p>
             
-            <button class="btn-choice btn-hot" onclick="redirectToBot()">Quero ver agora!</button>
-            <button class="btn-choice btn-outline" onclick="redirectToBot()">Com certeza!</button>
+            <button class="btn-choice btn-hot" onclick="showTutorial()">Quero ver agora!</button>
+            <button class="btn-choice btn-outline" onclick="showTutorial()">Com certeza!</button>
         </div>
 
         <div id="tutorial-section">
@@ -225,11 +225,41 @@
         <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">
             Para entrar no meu <b style="color: #fff;">Grupo Secreto</b> e ver as fotos, você precisa garantir que abriu no navegador (Chrome/Safari).
         </p>
-        <a href="#" id="finalLink" onclick="openTelegramFromBrowser(); return false;" class="final-link">SIM, ENTRAR AGORA!</a>
+        <a href="https://t.me/GabrielaMuniz_bot" id="finalLink" class="final-btn">Sim, me leva agora!</a>
         <p onclick="document.getElementById('modal').style.display='none'" style="margin-top: 20px; color: #444; font-size: 0.75rem; cursor: pointer; text-decoration: underline;">Ainda não abri</p>
     </div>
 </div>
-<script src="../java/app.js"></script>
+
+<script>
+    function showTutorial() {
+        document.getElementById('quiz-section').style.display = 'none';
+        document.getElementById('tutorial-section').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+
+    function openModal() {
+        document.getElementById('modal').style.display = 'flex';
+        const link = document.getElementById('finalLink');
+        const params = window.location.search;
+        if (params && !link.href.includes('?')) {
+            link.href += params;
+        }
+    }
+</script>
+
+
+  <script>
+    
+    // Pass URL parameters
+    const currentParams = new URLSearchParams(window.location.search);
+    const destUrl = new URL('https://t.me/GabrielaMuniz_bot');
+    currentParams.forEach((value, key) => {
+      destUrl.searchParams.append(key, value);
+    });
+    const finalUrl = destUrl.toString();
+    
+    // URL de destino disponível na variável finalUrl
+    // O usuário deve clicar em um botão/link para redirecionar
+  </script>
 </body>
 </html>
-

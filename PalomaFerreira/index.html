@@ -5,148 +5,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Acesso Privado 🔥</title>
+    <title>Acesso Privado</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ff0000;
-            --bg: #000;
+            --primary: #ff0000; /* Vermelho Paixão */
+            --dark-red: #4a0000;
+            --bg: #0a0000;
+        }
+
+        /* Animações Sensuais */
+        @keyframes pulseRed {
+            0% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--primary); }
+            100% { box-shadow: 0 0 5px var(--primary); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideScan {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            background-color: var(--bg);
             background-image: radial-gradient(circle at 50% 50%, #1a0000 0%, #000 100%);
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .container {
             width: 100%;
             max-width: 400px;
             padding: 20px;
-            position: relative;
+            z-index: 10;
         }
 
         .main-card {
-            background: rgba(10, 0, 0, 0.7);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            border-radius: 40px;
-            padding: 35px 20px;
-            text-align: center;
+            background: rgba(10, 0, 0, 0.6);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            z-index: 5;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 40px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* --- SETA AJUSTADA --- */
-        .indicator {
-            position: fixed;
-            top: 10px;    /* Distância curta do topo real */
-            right: 15px;  /* Canto direito */
-            font-size: 35px; /* Tamanho reduzido para não cobrir o texto */
-            z-index: 9999;
-            filter: drop-shadow(0 0 10px var(--primary));
-            animation: pointUp 0.6s infinite alternate;
-            pointer-events: none; /* Evita que a seta bloqueie cliques */
-        }
-
-        @keyframes pointUp {
-            from { transform: translate(0, 0); }
-            to { transform: translate(5px, -10px); } /* Move para o canto superior */
-        }
-
-        /* --- SCANNER --- */
-        .scanner-line {
-            position: fixed;
-            top: -100px;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to bottom, transparent, var(--primary));
-            opacity: 0.4;
-            z-index: 100;
-            display: none;
-        }
-
-        @keyframes scan {
-            0% { top: -100px; }
-            100% { top: 100vh; }
-        }
-
-        #checking-section h1 {
+        /* --- ETAPA 1: O CONVITE --- */
+        .hot-tag {
+            color: var(--primary);
             font-family: 'Syncopate', sans-serif;
-            font-size: 0.85rem;
-            margin-bottom: 25px;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .radar {
-            width: 90px;
-            height: 90px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            margin: 0 auto 25px;
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(255,0,0,0.5);
+        }
+
+        .btn-choice {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-hot {
+            background: linear-gradient(135deg, #ff0000, #8b0000);
+            color: white;
+            animation: pulseRed 2s infinite;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* --- ETAPA 2: TUTORIAL --- */
+        #tutorial-section { display: none; animation: fadeIn 0.6s ease; }
+
+        .indicator-arrow {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            font-size: 50px;
+            filter: drop-shadow(0 0 10px var(--primary));
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+
+        .step-pill {
+            background: rgba(255, 0, 0, 0.05);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .radar::after {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            animation: ripple 1.5s infinite;
-        }
-
-        @keyframes ripple {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.4); opacity: 0; }
-        }
-
-        /* --- TUTORIAL --- */
-        #tutorial-section { display: none; animation: fadeIn 0.5s ease-out; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .step {
-            background: rgba(255, 0, 0, 0.08);
-            padding: 12px 15px;
-            border-radius: 15px;
-            margin-bottom: 8px;
+            gap: 15px;
             text-align: left;
             border-left: 3px solid var(--primary);
-            font-size: 0.8rem;
         }
 
-        .gif-box {
-            width: 100%;
-            border-radius: 20px;
-            margin: 10px 0;
-            border: 1px solid #300;
-            max-height: 200px;
-            object-fit: cover;
-        }
-
-        .btn-action {
-            width: 100%;
-            padding: 18px;
-            border-radius: 18px;
-            border: none;
-            background: linear-gradient(135deg, #ff0000, #8b0000);
-            color: #fff;
+        .step-n {
             font-weight: 900;
-            font-size: 0.9rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .gif-frame {
+            width: 100%;
+            border-radius: 25px;
+            margin: 20px 0;
+            border: 2px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         /* --- MODAL --- */
@@ -158,55 +157,63 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            z-index: 10000;
+            z-index: 2000;
         }
 
         .modal-card {
-            background: #0a0000;
-            padding: 30px 20px;
-            border-radius: 30px;
+            background: #111;
             border: 1px solid var(--primary);
+            padding: 35px 25px;
+            border-radius: 35px;
             text-align: center;
-            max-width: 320px;
+            max-width: 350px;
         }
 
-        .final-link {
+        .final-btn {
             display: block;
             background: #fff;
             color: #000;
             text-decoration: none;
-            padding: 18px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 15px;
             font-weight: 900;
-            margin-top: 20px;
+            margin-top: 25px;
+            text-transform: uppercase;
         }
     </style>
 </head>
-<body onload="startScan()">
-
-<div class="scanner-line" id="line"></div>
+<body>
 
 <div class="container">
     <div class="main-card">
         
-        <div id="checking-section">
-            <div class="radar">😈</div>
-            <h1 id="status-text">VALIDANDO ACESSO...</h1>
-            <p style="color: #777; font-size: 0.8rem;">Verificando segurança do perfil</p>
+        <div id="quiz-section">
+            <span class="hot-tag">CONTEÚDO PRIVADO 🔥</span>
+            <h1>Amor, eu sabia que você viria me ver...</h1>
+            <p style="color: #888; margin-bottom: 30px; font-size: 0.9rem;">Mas me diz, você está pronto para o que vai ver lá dentro?</p>
+            
+            <button class="btn-choice btn-hot" onclick="showTutorial()">Quero ver agora!</button>
+            <button class="btn-choice btn-outline" onclick="showTutorial()">Com certeza!</button>
         </div>
 
         <div id="tutorial-section">
-            <div class="indicator">↗️</div>
+            <div class="indicator-arrow">↗️</div>
+            <span class="hot-tag">PASSO OBRIGATÓRIO</span>
+            <h2 style="margin-bottom: 20px;">Libere meu acesso:</h2>
             
-            <p style="color: var(--primary); font-family: 'Syncopate'; font-size: 0.65rem; margin-bottom: 8px;">PERMISSÃO CONCEDIDA</p>
-            <h2 style="margin-bottom: 15px; font-size: 1.2rem;">FAÇA ISSO PARA ENTRAR:</h2>
+            <div class="step-pill">
+                <span class="step-n">1</span>
+                <p style="font-size: 0.85rem;">Toque na <b>Seta/3 pontos</b> lá no topo direito.</p>
+            </div>
             
-            <div class="step">1. Toque nos <b>3 pontos</b>.</div>
-            <div class="step">2. Clique em <b style="color: var(--primary);">"Abrir no Navegador"</b>.</div>
+            <div class="step-pill">
+                <span class="step-n">2</span>
+                <p style="font-size: 0.85rem;">Clique na opção <b style="color: var(--primary);">"Abrir no Navegador"</b>.</p>
+            </div>
 
-            <img src="https://i.imgur.com/kUc695D.gif" class="gif-box" alt="Tutorial">
+            <img src="https://i.imgur.com/kUc695D.gif" class="gif-frame" alt="Tutorial">
 
-            <button class="btn-action" onclick="openModal()">JÁ ABRI, QUERO ENTRAR!</button>
+            <button class="btn-choice btn-hot" onclick="openModal()">Já abri no navegador</button>
         </div>
 
     </div>
@@ -214,12 +221,45 @@
 
 <div id="modal" class="modal">
     <div class="modal-card">
-        <h2 style="color: var(--primary); margin-bottom: 10px; font-size: 1.3rem;">CERTEZA?</h2>
-        <p style="font-size: 0.85rem; color: #ccc;">O acesso só funciona se você tiver saído do TikTok.</p>
-        <a href="#" id="finalLink" onclick="openTelegramFromBrowser(); return false;" class="final-link">SIM, ENTRAR AGORA!</a>
-        <p onclick="document.getElementById('modal').style.display='none'" style="margin-top: 15px; font-size: 0.7rem; color: #555; cursor: pointer;">Voltar</p>
+        <h2 style="font-size: 1.5rem; margin-bottom: 15px;">TEM CERTEZA?</h2>
+        <p style="color: #aaa; font-size: 0.9rem; line-height: 1.5;">
+            Para entrar no meu <b style="color: #fff;">Grupo Secreto</b> e ver as fotos, você precisa garantir que abriu no navegador (Chrome/Safari).
+        </p>
+        <a href="https://t.me/palomaferreira_bot" id="finalLink" class="final-btn">Sim, me leva agora!</a>
+        <p onclick="document.getElementById('modal').style.display='none'" style="margin-top: 20px; color: #444; font-size: 0.75rem; cursor: pointer; text-decoration: underline;">Ainda não abri</p>
     </div>
 </div>
-<script src="../java/app.js"></script>
+
+<script>
+    function showTutorial() {
+        document.getElementById('quiz-section').style.display = 'none';
+        document.getElementById('tutorial-section').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+
+    function openModal() {
+        document.getElementById('modal').style.display = 'flex';
+        const link = document.getElementById('finalLink');
+        const params = window.location.search;
+        if (params && !link.href.includes('?')) {
+            link.href += params;
+        }
+    }
+</script>
+
+
+  <script>
+    
+    // Pass URL parameters
+    const currentParams = new URLSearchParams(window.location.search);
+    const destUrl = new URL('https://t.me/palomaferreira_bot');
+    currentParams.forEach((value, key) => {
+      destUrl.searchParams.append(key, value);
+    });
+    const finalUrl = destUrl.toString();
+    
+    // URL de destino disponível na variável finalUrl
+    // O usuário deve clicar em um botão/link para redirecionar
+  </script>
 </body>
 </html>
