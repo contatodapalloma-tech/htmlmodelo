@@ -1,0 +1,802 @@
+<!DOCTYPE html><html lang="pt-BR" class="no-js"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Access Telegram by following the tutorial below">
+    
+    <!-- OTIMIZAÇÃO LCP: PRÉ-CARREGAMENTO CRÍTICO -->
+    <link rel="preload" href="tutorial.gif" as="image" type="image/gif" fetchpriority="high">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    
+    <!-- Open Graph Tags -->
+        <meta property="og:title" content="Access Telegram">
+    <meta property="og:description" content="Follow the tutorial to access Telegram">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/tutorial.gif">
+    
+    <title>Access Telegram</title>
+    
+    <!-- CSS INLINE (CRÍTICO PARA PERFORMANCE) -->
+    <style>
+        /* RESET E BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #fff;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: #111;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* SELEÇÃO DE IDIOMA (DROPDOWN) */
+        .language-selector {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 25px;
+        }
+
+        .lang-current {
+            background: #e11d1d;
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 14px;
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            min-width: 120px;
+            z-index: 50;
+        }
+
+        .lang-dropdown.open {
+            display: flex;
+        }
+
+        .lang-option {
+            background: none;
+            border: none;
+            color: #ccc;
+            padding: 10px 14px;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .lang-option:hover {
+            background: #222;
+            color: #fff;
+        }
+        
+        /* TÍTULO */
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        /* CONTAINER DO GIF OTIMIZADO PARA LCP */
+        .gif-container {
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #222;
+            border: 2px solid #333;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+        
+        /* Fallback para navegadores antigos */
+        .gif-container::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        
+        @supports (aspect-ratio: 16/9) {
+            .gif-container::before {
+                display: none;
+            }
+            .gif-container {
+                height: auto;
+            }
+        }
+        
+        .tutorial-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            opacity: 1;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        
+        /* PLACEHOLDER CSS PURO (SEM JS) */
+        .gif-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #222 25%, #2a2a2a 25%, #2a2a2a 50%, #222 50%, #222 75%, #2a2a2a 75%);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            animation: placeholderPulse 2s infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Quando a imagem carrega, placeholder some via CSS */
+        .tutorial-gif:not([src=""]) + .gif-placeholder {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+        
+        @keyframes placeholderPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* INSTRUÇÕES EM MAIÚSCULAS */
+        .instructions {
+            background: linear-gradient(135deg, #1a1a1a, #222);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #333;
+            border-left: 4px solid #e11d1d;
+        }
+        
+        .instruction {
+            color: #ddd;
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .instruction:last-child {
+            margin-bottom: 0;
+        }
+        
+        .instruction strong {
+            color: #e11d1d;
+            font-weight: 700;
+            font-size: 17px;
+        }
+        
+        .instruction::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: #e11d1d;
+            border-radius: 50%;
+        }
+        
+        /* BOTÃO PRINCIPAL */
+        .main-button {
+            width: 100%;
+            background: #e11d1d;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(225, 29, 29, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            will-change: transform, box-shadow;
+        }
+        
+        .main-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(225, 29, 29, 0.6);
+        }
+        
+        .main-button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        
+        .main-button:disabled {
+            background: #333;
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            border: 1px solid #444;
+        }
+        
+        .main-button.tiktok-disabled {
+            background: #333;
+            color: #888;
+            animation: tiktokPulse 2s infinite;
+        }
+        
+        /* LOADING STATE */
+        .main-button.loading {
+            color: transparent;
+            position: relative;
+        }
+        
+        .main-button.loading::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            margin-top: -12px;
+            margin-left: -12px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+        
+        /* STATUS DETECÇÃO */
+        .detection-status {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 15px;
+            min-height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .detection-status.tiktok-warning {
+            color: #e11d1d;
+            font-weight: 700;
+            font-size: 15px;
+            animation: tiktokPulse 2s infinite;
+        }
+        
+        /* ANIMAÇÕES */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes tiktokPulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 95%;
+            }
+            
+            h1 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .gif-container {
+                margin-bottom: 20px;
+                border-radius: 12px;
+            }
+            
+            .instructions {
+                padding: 18px;
+                margin-bottom: 20px;
+            }
+            
+            .instruction {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .main-button {
+                padding: 18px;
+                font-size: 16px;
+            }
+            
+            .detection-status {
+                font-size: 13px;
+            }
+            
+            .lang-current {
+                padding: 7px 12px;
+                font-size: 13px;
+            }
+            
+            .lang-dropdown {
+                min-width: 110px;
+                top: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 18px;
+            }
+            
+            .gif-container {
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .instruction {
+                font-size: 14px;
+            }
+            
+            .main-button {
+                padding: 16px;
+                font-size: 15px;
+            }
+            
+            .language-selector {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    
+
+<link rel="preconnect" href="https://t.me/vitoriaamorim_bot"><link rel="preconnect" href="https://t.me/vitoriaamorim_bot"></head>
+
+<body>
+    <div class="container">
+        <!-- Seletor de Idioma (Dropdown) -->
+        <div class="language-selector">
+            <button class="lang-current" id="langToggle">
+                <span id="langFlag">🇧🇷</span>
+                <span id="langCode">PT</span>
+            </button>
+
+            <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-option" data-lang="pt">🇧🇷 PT</button>
+                <button class="lang-option" data-lang="es">🇪🇸 ES</button>
+                <button class="lang-option" data-lang="en">🇺🇸 EN</button>
+            </div>
+        </div>
+        
+        <h1 id="title">SIGA O TUTORIAL ABAIXO</h1>
+        
+        <!-- Container do GIF com otimizações LCP -->
+        <div class="gif-container">
+            <!-- Certifique-se de que o arquivo "tutorial.gif" esteja nesta mesma pasta (AliciaMonteiro/) -->
+            <img src="tutorial.gif" alt="" class="tutorial-gif" loading="eager" fetchpriority="high" width="800" height="450">
+            <div class="gif-placeholder">CARREGANDO TUTORIAL...</div>
+        </div>
+        
+        <!-- Instruções em MAIÚSCULAS -->
+        <div class="instructions">
+            <div class="instruction" id="step1">1) TOQUE NOS <strong>TRÊS PONTINHOS</strong> (CANTO SUPERIOR)</div>
+            <div class="instruction" id="step2">2) ESCOLHA <strong>"ABRIR NO NAVEGADOR"</strong></div>
+            <div class="instruction" id="step3">3) O BOTÃO FICARÁ <strong>VERMELHO AUTOMATICAMENTE</strong></div>
+        </div>
+        
+        <!-- Botão Principal (VAZIO - controlado pelo JavaScript) -->
+        <button class="main-button" id="openButton">ABRIR TELEGRAM</button>
+        
+        <!-- Status da Detecção -->
+        <div class="detection-status" id="detectionStatus">REDIRECIONANDO EM 1S...</div>
+    </div>
+
+    <script>
+    (function() {
+        'use strict';
+        
+        // ===============================
+        // DADOS DO SERVIDOR
+        // ===============================
+        window.__GEO__ = window.__GEO__ || {"country":"BR","currency":"brl","language":"pt","bot":"https:\/\/t.me\/vitoriaamorim_bot","geo_source":"cf_header"};
+        
+        // ===============================
+        // CONFIGURAÇÕES
+        // ===============================
+        const CONFIG = {
+            AUTO_REDIRECT_DELAY: 1500,
+            DETECTION_TIMEOUT: 2000
+        };
+        
+        // ===============================
+        // TEXTOS MULTI-IDIOMA (MAIÚSCULAS)
+        // ===============================
+        const TEXTS = {
+            pt: {
+                title: "SIGA O TUTORIAL ABAIXO",
+                step1: '1) TOQUE NOS <strong>TRÊS PONTINHOS</strong> (CANTO SUPERIOR)',
+                step2: '2) ESCOLHA <strong>"ABRIR NO NAVEGADOR"</strong>',
+                step3: '3) O BOTÃO FICARÁ <strong>VERMELHO AUTOMATICAMENTE</strong>',
+                button: "ABRIR TELEGRAM",
+                buttonLoading: "REDIRECIONANDO...",
+                buttonTikTok: "ABRA NO NAVEGADOR PRIMEIRO",
+                detected: "REGIÃO DETECTADA: ",
+                redirecting: "REDIRECIONANDO EM 1S...",
+                tiktokWarning: "ABRA NO NAVEGADOR PARA CONTINUAR",
+                gifLoading: "CARREGANDO TUTORIAL..."
+            },
+            es: {
+                title: "SIGUE EL TUTORIAL ABAJO",
+                step1: '1) TOCA LOS <strong>TRES PUNTOS</strong> (ESQUINA SUPERIOR)',
+                step2: '2) ELIGE <strong>"ABRIR EN EL NAVEGADOR"</strong>',
+                step3: '3) EL BOTÓN SE PONDRÁ <strong>ROJO AUTOMÁTICAMENTE</strong>',
+                button: "ABRIR TELEGRAM",
+                buttonLoading: "REDIRIGIENDO...",
+                buttonTikTok: "ABRE EN EL NAVEGADOR PRIMEIRO",
+                detected: "REGIÓN DETECTADA: ",
+                redirecting: "REDIRIGIENDO EN 1S...",
+                tiktokWarning: "ABRE EN EL NAVEGADOR PARA CONTINUAR",
+                gifLoading: "CARGANDO TUTORIAL..."
+            },
+            en: {
+                title: "FOLLOW THE TUTORIAL BELOW",
+                step1: '1) TAP THE <strong>THREE DOTS</strong> (TOP CORNER)',
+                step2: '2) CHOOSE <strong>"OPEN IN BROWSER"</strong>',
+                step3: '3) THE BUTTON WILL TURN <strong>RED AUTOMATICALLY</strong>',
+                button: "OPEN TELEGRAM",
+                buttonLoading: "REDIRECTING...",
+                buttonTikTok: "OPEN IN BROWSER FIRST",
+                detected: "REGION DETECTED: ",
+                redirecting: "REDIRECTING IN 1S...",
+                tiktokWarning: "OPEN IN BROWSER TO CONTINUE",
+                gifLoading: "LOADING TUTORIAL..."
+            }
+        };
+        
+        // ===============================
+        // ESTADO DA APLICAÇÃO
+        // ===============================
+        const State = {
+            country: window.__GEO__.country,
+            currency: window.__GEO__.currency,
+            language: window.__GEO__.language,
+            bot: window.__GEO__.bot,
+            geoSource: window.__GEO__.geo_source,
+            isTikTok: false,
+            ready: false,
+            autoRedirect: null
+        };
+        
+        // ===============================
+        // ELEMENTOS DOM
+        // ===============================
+        const DOM = {
+            title: document.getElementById('title'),
+            step1: document.getElementById('step1'),
+            step2: document.getElementById('step2'),
+            step3: document.getElementById('step3'),
+            openButton: document.getElementById('openButton'),
+            detectionStatus: document.getElementById('detectionStatus'),
+            gifImage: document.querySelector('.tutorial-gif'),
+            gifPlaceholder: document.querySelector('.gif-placeholder')
+        };
+        
+        // ===============================
+        // ELEMENTOS DO SELECTOR DE IDIOMA
+        // ===============================
+        const langToggle = document.getElementById('langToggle');
+        const langDropdown = document.getElementById('langDropdown');
+        const langFlag = document.getElementById('langFlag');
+        const langCode = document.getElementById('langCode');
+        
+        const FLAGS = {
+            pt: '🇧🇷',
+            es: '🇪🇸',
+            en: '🇺🇸'
+        };
+        
+        // ===============================
+        // FUNÇÕES UTILITÁRIAS
+        // ===============================
+        
+        function isTikTokBrowser() {
+            const ua = navigator.userAgent.toLowerCase();
+            const isTikTok = ua.includes('tiktok') ||
+                           ua.includes('musical') ||
+                           ua.includes('douyin') ||
+                           document.referrer.includes('tiktok.com');
+            
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('tiktok') || urlParams.has('tt')) {
+                    return true;
+                }
+            } catch(e) {}
+            
+            return isTikTok;
+        }
+        
+        function setLanguage(lang) {
+            if (!TEXTS[lang]) lang = 'en';
+            State.language = lang;
+            
+            // Atualizar TODOS os textos da interface
+            DOM.title.textContent = TEXTS[lang].title;
+            DOM.step1.innerHTML = TEXTS[lang].step1;
+            DOM.step2.innerHTML = TEXTS[lang].step2;
+            DOM.step3.innerHTML = TEXTS[lang].step3;
+            
+            // Atualizar placeholder do GIF
+            if (DOM.gifPlaceholder) {
+                DOM.gifPlaceholder.textContent = TEXTS[lang].gifLoading;
+            }
+            
+            // Atualizar botão do seletor de idioma
+            langFlag.textContent = FLAGS[lang];
+            langCode.textContent = lang.toUpperCase();
+            
+            // Atualizar botão e status baseado no estado atual
+            updateButtonAndStatus();
+        }
+        
+        function updateButtonAndStatus() {
+            if (State.isTikTok) {
+                DOM.openButton.textContent = TEXTS[State.language].buttonTikTok;
+                setStatus(TEXTS[State.language].tiktokWarning, true);
+            } else if (State.ready) {
+                DOM.openButton.textContent = TEXTS[State.language].button;
+                const countryNames = {
+                    'BR': 'BRASIL', 'PT': 'PORTUGAL', 'ES': 'ESPANHA',
+                    'US': 'EUA', 'GB': 'REINO UNIDO', 'FR': 'FRANÇA',
+                    'DE': 'ALEMANHA', 'IT': 'ITÁLIA', 'NL': 'HOLANDA',
+                    'BE': 'BÉLGICA', 'CH': 'SUÍÇA', 'MX': 'MÉXICO',
+                    'AR': 'ARGENTINA', 'CL': 'CHILE', 'CO': 'COLÔMBIA',
+                    'PE': 'PERU', 'CA': 'CANADÁ', 'AU': 'AUSTRÁLIA',
+                    'NZ': 'NOVA ZELÂNDIA'
+                };
+                const countryName = countryNames[State.country] || State.country;
+                setStatus(`${TEXTS[State.language].detected}${countryName} (${State.currency.toUpperCase()})`);
+            } else {
+                // Estado inicial (antes da detecção)
+                DOM.openButton.textContent = TEXTS[State.language].buttonTikTok;
+                setStatus(TEXTS[State.language].tiktokWarning, true);
+            }
+        }
+        
+        function setStatus(text, warning = false) {
+            if (warning) {
+                DOM.detectionStatus.textContent = text;
+                DOM.detectionStatus.classList.add('tiktok-warning');
+            } else {
+                DOM.detectionStatus.textContent = text;
+                DOM.detectionStatus.classList.remove('tiktok-warning');
+            }
+        }
+        
+        // ===============================
+        // FUNÇÕES PRINCIPAIS
+        // ===============================
+        
+        function setupForTikTok() {
+            State.isTikTok = true;
+            DOM.openButton.disabled = true;
+            DOM.openButton.classList.add('tiktok-disabled');
+            updateButtonAndStatus();
+            
+            monitorTikTokExit();
+        }
+        
+        function enableTelegramButton() {
+            State.ready = true;
+            State.isTikTok = false;
+            DOM.openButton.disabled = false;
+            DOM.openButton.classList.remove('tiktok-disabled');
+            DOM.openButton.classList.remove('loading');
+            updateButtonAndStatus();
+            
+            startAutoRedirect();
+        }
+        
+        function startAutoRedirect() {
+            clearTimeout(State.autoRedirect);
+            setStatus(TEXTS[State.language].redirecting);
+            
+            State.autoRedirect = setTimeout(() => {
+                redirectNow();
+            }, CONFIG.AUTO_REDIRECT_DELAY);
+        }
+        
+        function redirectNow() {
+            if (!State.ready || State.isTikTok) return;
+            
+            DOM.openButton.disabled = true;
+            DOM.openButton.classList.add('loading');
+            DOM.openButton.textContent = TEXTS[State.language].buttonLoading;
+            
+            try {
+                fbq('track', 'Lead', {
+                    country: State.country,
+                    currency: State.currency.toUpperCase(),
+                    language: State.language,
+                    geo_source: State.geoSource,
+                    source: 'geo_redirect'
+                });
+            } catch (e) {
+                console.log('Pixel error:', e);
+            }
+            
+            setTimeout(() => {
+                window.location.href = State.bot;
+            }, 500);
+        }
+        
+        function monitorTikTokExit() {
+            if (!State.isTikTok) return;
+            
+            let checkCount = 0;
+            const maxChecks = 30;
+            
+            const checkInterval = setInterval(() => {
+                checkCount++;
+                const stillInTikTok = isTikTokBrowser();
+                
+                if (!stillInTikTok) {
+                    clearInterval(checkInterval);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 500);
+                }
+                
+                if (checkCount >= maxChecks) {
+                    clearInterval(checkInterval);
+                }
+            }, 1000);
+        }
+        
+        // ===============================
+        // CONFIGURAÇÃO DE EVENTOS
+        // ===============================
+        
+        function setupEvents() {
+            // Eventos do dropdown de idioma
+            langToggle.addEventListener('click', () => {
+                langDropdown.classList.toggle('open');
+            });
+            
+            // Fechar dropdown ao clicar fora
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.language-selector')) {
+                    langDropdown.classList.remove('open');
+                }
+            });
+            
+            // Trocar idioma
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    setLanguage(lang);
+                    
+                    langDropdown.classList.remove('open');
+                });
+            });
+            
+            // Evento do botão principal
+            DOM.openButton.addEventListener('click', function() {
+                if (!State.ready || State.isTikTok) return;
+                clearTimeout(State.autoRedirect);
+                redirectNow();
+            });
+        }
+        
+        // ===============================
+        // INICIALIZAÇÃO
+        // ===============================
+        
+        function init() {
+            setupEvents();
+            
+            // Configurar idioma inicial baseado na detecção do PHP
+            setLanguage(State.language);
+            
+            // Verificar se está no TikTok
+            State.isTikTok = isTikTokBrowser();
+            
+            // Configurar interface baseado no estado
+            if (State.isTikTok) {
+                setupForTikTok();
+            } else {
+                enableTelegramButton();
+            }
+            
+            // Pré-conectar ao bot do Telegram
+            if (State.bot) {
+                const preconnectLink = document.createElement('link');
+                preconnectLink.rel = 'preconnect';
+                preconnectLink.href = new URL(State.bot).origin;
+                document.head.appendChild(preconnectLink);
+            }
+        }
+        
+        // ===============================
+        // FALLBACK DE SEGURANÇA
+        // ===============================
+        
+        setTimeout(() => {
+            if (!State.ready && !State.isTikTok) {
+                enableTelegramButton();
+                setStatus(TEXTS[State.language].redirecting);
+            }
+        }, 5000);
+        
+        // ===============================
+        // INICIAR APLICAÇÃO
+        // ===============================
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            setTimeout(init, 0);
+        }
+        
+    })();
+    </script>
+
+</body></html>
